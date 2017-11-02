@@ -1,13 +1,18 @@
-from django.shortcuts import render
+﻿from django.shortcuts import render
 from .models import Article, Category, BlogComment, Tag, Suggest
-from .forms import BlogCommentForm, SuggestForm, ArticleForm
+from .forms import BlogCommentForm, SuggestForm, ArticleForm, LoginForm, UserRegistrationForm
 from django.shortcuts import get_object_or_404, redirect, get_list_or_404
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 import markdown
 import re
 import logging
+from django.contrib.auth import authenticate, login
 from .tasks import celery_send_email
+from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse
+from django.contrib.auth import authenticate, login, logout
+
 
 class IndexView(ListView):
     template_name = 'blog/index.html'
@@ -78,7 +83,7 @@ class TagView(ListView):
         """
         根据指定的标签名获得该标签下的全部文章
         """
-        article_list = Article.objects.filter(tags=self.kwargs['tag_id'], status='p')
+        article_list = Article.objects.filter(tags=self.kwargs['tag_id'], status='publish')
         for article in article_list:
             article.body = markdown.markdown(article.body, extras=['fenced-code-blocks'], )
         return article_list
@@ -144,12 +149,33 @@ def suggest_view(request):
             return redirect('blog:thanks')
     return render(request, 'blog/about.html', {'form': form})
 
+@login_required
 def addArticle(request):
     form = ArticleForm()
     if request.method == 'POST':
         form = ArticleForm(request.POST)
         if form.is_valid():
-           article = form.clean_data
+           article_data = form.cleaned_data
+           article = form.save(commit=False)
            article.save()
-           return render(request, 'blog/addAriticle.html', {'form': form})
+           return redirect('blog:index')
+    return render(request, 'blog/addArticle.html', {'form': form})
+
+def register(request):
+    if request.method == 'POST':
+        form = UserRegistrationForm(request.POST)
+        if user_form.is_valid():
+            # Create a new user object but avoid saving it yet
+            new_user = form.save(commit=False)
+            # Set the chosen password
+            new_user.set_password(form.cleaned_data['password'])
+            # Save the User object
+            new_user.save()
+            # Create the user profile
+            return render(request,
+                          'account/register_done.html',
+                          {'new_user': new_user})
+    else:
+        user_form = UserRegistrationForm()
+    return render(request, 'account/register.html', {'user_form': user_form})
 # Create your views here.

@@ -27,7 +27,10 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
+from django.core.urlresolvers import reverse_lazy
+LOGIN_REDIRECT_URL = reverse_lazy('index')  #登录成功后重定向的url
+LOGIN_URL = reverse_lazy('login')           #重定向用户登录的url
+LOGOUT_URL = reverse_lazy('logout')         #重定向用户登出的url
 # Application definition
 
 INSTALLED_APPS = [

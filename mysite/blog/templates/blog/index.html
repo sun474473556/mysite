@@ -25,13 +25,13 @@
                 {% for article in article_list %}
                 <div>
                     <h2>
-                        <a href="{% url 'app:detail' article.pk %}">{{ article.title }}</a>
+                        <a href="{% url 'blog:detail' article.pk %}">{{ article.title }}</a>
                     </h2>
                     <p><span class="glyphicon glyphicon-time"></span> {{ article.created_time }}</p>
                     <hr>
                     <p>{{ article.body | safe | truncatewords:10}}</p>
                 </div>
-                <div><a class="btn btn-primary" href="{% url 'app:detail' article.pk %}">Read More <span class="glyphicon glyphicon-chevron-right"></span></a></div>
+                <div><a class="btn btn-primary" href="{% url 'blog:detail' article.pk %}">Read More <span class="glyphicon glyphicon-chevron-right"></span></a></div>
                 <span class="post-views">阅读量: {{ article.views }}</span>
                 <hr>
                 {% endfor %}
