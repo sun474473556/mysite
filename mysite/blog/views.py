@@ -11,7 +11,6 @@ from django.contrib.auth import authenticate, login
 from .tasks import celery_send_email
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
-from django.contrib.auth import authenticate, login, logout
 
 
 class IndexView(ListView):
@@ -173,9 +172,9 @@ def register(request):
             new_user.save()
             # Create the user profile
             return render(request,
-                          'account/register_done.html',
+                          'blog/register_done.html',
                           {'new_user': new_user})
     else:
         user_form = UserRegistrationForm()
-    return render(request, 'account/register.html', {'user_form': user_form})
+    return render(request, 'blog/register.html', {'user_form': user_form})
 # Create your views here.
