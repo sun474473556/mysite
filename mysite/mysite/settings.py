@@ -28,9 +28,95 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 from django.core.urlresolvers import reverse_lazy
-LOGIN_REDIRECT_URL = reverse_lazy('index')  #登录成功后重定向的url
-LOGIN_URL = reverse_lazy('login')           #重定向用户登录的url
-LOGOUT_URL = reverse_lazy('logout')         #重定向用户登出的url
+LOGIN_REDIRECT_URL = reverse_lazy('blog:index')  #登录成功后重定向的url
+LOGIN_URL = reverse_lazy('blog:login')           #重定向用户登录的url
+LOGOUT_URL = reverse_lazy('blog:logout')         #重定向用户登出的url
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = "smtp.qq.com"
+EMAIL_HOST_PASSWORD = '940518hao'
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER = "3205857911@qq.com"
+EMAIL_PORT = 25
+EMAIL_USE_TLS = True
+CELERY_BROKER_URL = 'redis://localhost:6379/0'
+
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_ENABLE_UTC = True
+TIME_ZONE = 'Asia/Shanghai'
+CELERY_TIMEZONE = TIME_ZONE
+
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR,'static')
+ 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': '%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s'
+        },
+        'simple': {
+            'format': '%(levelname)s %(message)s'
+        },
+    },
+    'handlers': {
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'simple'
+        },
+        'log_file': {
+            'level': "INFO",
+            "class": "logging.FileHandler",
+            "formatter": "verbose",
+            "filename": os.path.join(BASE_DIR, "logs/django.log"),
+        },
+        "faillog": {
+            'level': "ERROR",
+            "class": "logging.FileHandler",
+            "formatter": "verbose",
+            "filename": os.path.join(BASE_DIR, "logs/faillog.log"),
+        },
+        "dberror": {
+            'level': "ERROR",
+            "class": "logging.FileHandler",
+            "formatter": "verbose",
+            "filename": os.path.join(BASE_DIR, "logs/dberror.log"),
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
+            'propagate': False,
+            'level': 'INFO',
+        },
+        'app': {
+            'handlers': ['console', 'log_file'],
+            'propagate': False,
+            'level': 'DEBUG' if DEBUG else 'INFO',
+        },
+        'django.request': {
+            'handlers': ['log_file'],
+            'level': 'ERROR',
+            'propagate': False,
+        },
+        "faillog": {
+            "handlers": ['console', "faillog"],
+            "propagate": False,
+            "level": "ERROR",
+        },
+        "dberror": {
+            "handlers": ['console', "dberror"],
+            "propagate": False,
+            "level": "ERROR",
+        },
+    }
+}
 # Application definition
 
 INSTALLED_APPS = [

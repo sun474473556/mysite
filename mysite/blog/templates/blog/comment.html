@@ -14,7 +14,7 @@
         <span class="'user-nickname">{{ comment.user_name }}</span>
         <time class="time">{{ comment.created_time }}</time>
         <div class="comment-content">{{ comment.body }}</div>
-        <div><a href="">回复</a></div>
+        <div><a href="{% url 'blog:detail' article.pk %}">回复</a></div>
     <hr>
     {% endfor %}
 </div>

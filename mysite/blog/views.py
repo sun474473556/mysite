@@ -140,11 +140,11 @@ def suggest_view(request):
             suggest_data = form.cleaned_data['suggest']
             new_record = Suggest(suggest=suggest_data)
             new_record.save()
-            try:
                 # 使用celery并发处理邮件发送的任务
+            try:
                 celery_send_email.delay('访客意见', suggest_data, '3205857911@qq.com', ['474473556@qq.com'])
             except Exception as e:
-                logger.error("邮件发送失败: {}".format(e))
+                logger.error("邮件发送失败: {}".format(e))    
             return redirect('blog:thanks')
     return render(request, 'blog/about.html', {'form': form})
 
@@ -160,10 +160,14 @@ def addArticle(request):
            return redirect('blog:index')
     return render(request, 'blog/addArticle.html', {'form': form})
 
+def logout(request):
+    return render(request, 'registration/logout.html')
+
 def register(request):
+    form = UserRegistrationForm()
     if request.method == 'POST':
         form = UserRegistrationForm(request.POST)
-        if user_form.is_valid():
+        if form.is_valid():
             # Create a new user object but avoid saving it yet
             new_user = form.save(commit=False)
             # Set the chosen password
@@ -174,7 +178,5 @@ def register(request):
             return render(request,
                           'blog/register_done.html',
                           {'new_user': new_user})
-    else:
-        user_form = UserRegistrationForm()
-    return render(request, 'blog/register.html', {'user_form': user_form})
+    return render(request, 'blog/register.html', {'form': form})
 # Create your views here.

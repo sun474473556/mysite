@@ -1,4 +1,5 @@
 {% load staticfiles %}
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -42,9 +43,12 @@
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
+                <ul class="nav navbar-nav navbar-right">
                     <li>
                         <a href="{% url 'blog:about_me' %}">关于</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'blog:add' %}">写文章</a>
                     </li>
                 </ul>
             </div>
@@ -55,18 +59,22 @@
 
     <!-- Page Content -->
     <div class="container" style="padding: 20px;"><h1 id="h1-about-me"><a name="About me" class="reference-link"></a><span class="header-link octicon octicon-link"></span>About me</h1><hr>
-        <p><strong>My name is Jiang WenMing(姜闻名),I was born in 1994s.</strong></p>
+        <p><strong>玩过辩论，玩过机器人，玩过硬件，玩过软件，现在的我只想安安静静的找份关于python的工作</strong></p>
+        <p><strong>也许一切又要从头开始，也许压根没有希望，但还是想在拼一次，人生信条中没有什么是不可能的</strong></p>
         <br>
-        <p><strong>I used to major in Civil Engineering. But now, i am a fresh man on CS.</strong></p>
-        <p><strong> During the past times, i am just coding and coding, learning and learning. In order to become a Web developer,</strong></p>
-        <p><strong>  I’ll keep on coding and learning. By th way, i am familiar with Python, Mysql, CSS, HTML.etc. </strong></p>
+        <p><strong> 也许你想知道：为什么实习结束后，不打算转正？</strong></p>
+        <p><strong> 我想告诉你，实习期间的某一天当我来到公司打开电脑的一瞬间，忽然在想今天什么时候下班，也许我就放弃这份工作了，我不希望我工作的每天都在思考今天什么时候下班？希望能来到一家让我思考今天什么时候上班的公司。不希望今天的我已经能想象到5年后自己，尽管工作轻松，尽管工资满足，但我依然拒绝活成那个我最讨厌的样子。 </strong></p>
         <br>
-        <p><strong>In the sapce time, i will read some books, surfing the internet and do some exercise.</strong></p>
+        <p><strong> 也许你想知道:我能带来什么？</strong></p>
+        <p><strong> 四年大学辩论生涯，惨的时候队里只有4个人，一支完整的队伍都快凑不起来了，到现在重邮最强的队伍之一，坚持是其一;往返于各大学校，涉足于各大赛事，参与辩论，不仅为了自己能学到更多，也为了给队伍带来更多，活力是其二;以及对公司简单的技术帮助(不自信ing)，未来呢，希望能给团队打上我自己独特的标签。<p></strong>
+        <br>
+        <p><strong> 也许你想知道:这个人技术水平到底怎么样？</strong></p>
+        <p><strong> 老实来说:自己以前在跟着研究生学长学过python，喜欢使用这样工具，但本科找工作时，基本没有来招python有关的工作，所以来到现在海信，工作之时自己还是在不断学习，熟悉python语言特性。之前没有做过Django有关的工作，自学Django，现在也基本熟悉Django框架。不断学习、不断进步，永远不安于现状，<p></strong><p>
         <hr>
         <h1 id="h1-contact-me"><a name="Contact me" class="reference-link"></a><span class="header-link octicon octicon-link"></span>Contact me</h1><hr>
         <ul>
-            <li><strong><a href="https://github.com/tomming233" title="Github">Github</a></strong></li>
-            <li><strong>Email: <a href="mailto:tomming233@gmail.com">tomming233@gmail.com</a></strong></li>
+            <li><strong><a href="https://github.com/sun474473556" title="Github">Github</a></strong></li>
+            <li><strong>Email: 474473556@gmail.com</a></strong></li>
         </ul>
         <hr>
         <h1 id="h1-suggest-me"><span class="header-link octicon octicon-link"></span>Suggest to me</h1><hr>
@@ -85,11 +93,11 @@
     <footer>
         <div class="row">
             <div class="col-lg-12">
-                <p style="text-align: center;">Copyright &copy; 姜闻名的博客 2016</p>
+                <p style="text-align: center;">浩浩同学的博客</p>
             </div>
             <!-- /.col-lg-12 -->
             <div class="col-lg-12" style="text-align: center;">
-                <a href="https://github.com/tomming233/blog">Github</a>
+                <a href="https://github.com/sun474473556">Github</a>
             </div>
 
         </div>
