@@ -79,3 +79,119 @@ django.db.utils.ProgrammingError: (1146, "Table 'blog.app_article' doesn't exist
 ERROR 2017-10-07 10:24:31,582 views 13373 140030823622400 邮件发送失败: Error 111 connecting to localhost:6379. Connection refused.
 ERROR 2017-10-07 11:02:40,385 views 26434 139984518506240 邮件发送失败: (535, b'5.7.8 authentication failed')
 ERROR 2017-10-07 11:03:13,011 views 26595 140543109977856 邮件发送失败: (535, b'5.7.12 SMTP access disabled')
+ERROR 2017-11-05 15:25:25,612 exception 29025 140307442034432 Internal Server Error: /
+Traceback (most recent call last):
+  File "/home/misahoge/.local/lib/python3.5/site-packages/django/core/handlers/exception.py", line 41, in inner
+    response = get_response(request)
+  File "/home/misahoge/.local/lib/python3.5/site-packages/django/core/handlers/base.py", line 217, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/home/misahoge/.local/lib/python3.5/site-packages/django/core/handlers/base.py", line 215, in _get_response
+    response = response.render()
+  File "/home/misahoge/.local/lib/python3.5/site-packages/django/template/response.py", line 107, in render
+    self.content = self.rendered_content
+  File "/home/misahoge/.local/lib/python3.5/site-packages/django/template/response.py", line 84, in rendered_content
+    content = template.render(context, self._request)
+  File "/home/misahoge/.local/lib/python3.5/site-packages/django/template/backends/django.py", line 66, in render
+    return self.template.render(context)
+  File "/home/misahoge/.local/lib/python3.5/site-packages/django/template/base.py", line 207, in render
+    return self._render(context)
+  File "/home/misahoge/.local/lib/python3.5/site-packages/django/template/base.py", line 199, in _render
+    return self.nodelist.render(context)
+  File "/home/misahoge/.local/lib/python3.5/site-packages/django/template/base.py", line 990, in render
+    bit = node.render_annotated(context)
+  File "/home/misahoge/.local/lib/python3.5/site-packages/django/template/base.py", line 957, in render_annotated
+    return self.render(context)
+  File "/home/misahoge/.local/lib/python3.5/site-packages/django/template/loader_tags.py", line 177, in render
+    return compiled_parent._render(context)
+  File "/home/misahoge/.local/lib/python3.5/site-packages/django/template/base.py", line 199, in _render
+    return self.nodelist.render(context)
+  File "/home/misahoge/.local/lib/python3.5/site-packages/django/template/base.py", line 990, in render
+    bit = node.render_annotated(context)
+  File "/home/misahoge/.local/lib/python3.5/site-packages/django/template/base.py", line 957, in render_annotated
+    return self.render(context)
+  File "/home/misahoge/.local/lib/python3.5/site-packages/django/template/defaulttags.py", line 458, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "/home/misahoge/.local/lib/python3.5/site-packages/django/urls/base.py", line 91, in reverse
+    return force_text(iri_to_uri(resolver._reverse_with_prefix(view, prefix, *args, **kwargs)))
+  File "/home/misahoge/.local/lib/python3.5/site-packages/django/urls/resolvers.py", line 497, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'about_me' not found. 'about_me' is not a valid view function or pattern name.
+ERROR 2017-11-06 14:21:01,283 exception 3612 139736349927168 Internal Server Error: /article/2
+Traceback (most recent call last):
+  File "/home/misahoge/.local/lib/python3.5/site-packages/django/core/handlers/exception.py", line 41, in inner
+    response = get_response(request)
+  File "/home/misahoge/.local/lib/python3.5/site-packages/django/core/handlers/base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/home/misahoge/.local/lib/python3.5/site-packages/django/core/handlers/base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/misahoge/.local/lib/python3.5/site-packages/django/utils/decorators.py", line 149, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "/home/misahoge/.local/lib/python3.5/site-packages/django/views/generic/base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/misahoge/.local/lib/python3.5/site-packages/django/views/generic/base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/home/misahoge/.local/lib/python3.5/site-packages/django/views/generic/detail.py", line 115, in get
+    self.object = self.get_object()
+  File "/home/misahoge/mysite/mysite/blog/views.py", line 42, in get_object
+    obj = Article.objects.get(id='pk_url_kwarg')
+  File "/home/misahoge/.local/lib/python3.5/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/misahoge/.local/lib/python3.5/site-packages/django/db/models/query.py", line 371, in get
+    clone = self.filter(*args, **kwargs)
+  File "/home/misahoge/.local/lib/python3.5/site-packages/django/db/models/query.py", line 784, in filter
+    return self._filter_or_exclude(False, *args, **kwargs)
+  File "/home/misahoge/.local/lib/python3.5/site-packages/django/db/models/query.py", line 802, in _filter_or_exclude
+    clone.query.add_q(Q(*args, **kwargs))
+  File "/home/misahoge/.local/lib/python3.5/site-packages/django/db/models/sql/query.py", line 1250, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+  File "/home/misahoge/.local/lib/python3.5/site-packages/django/db/models/sql/query.py", line 1276, in _add_q
+    allow_joins=allow_joins, split_subq=split_subq,
+  File "/home/misahoge/.local/lib/python3.5/site-packages/django/db/models/sql/query.py", line 1210, in build_filter
+    condition = self.build_lookup(lookups, col, value)
+  File "/home/misahoge/.local/lib/python3.5/site-packages/django/db/models/sql/query.py", line 1104, in build_lookup
+    return final_lookup(lhs, rhs)
+  File "/home/misahoge/.local/lib/python3.5/site-packages/django/db/models/lookups.py", line 24, in __init__
+    self.rhs = self.get_prep_lookup()
+  File "/home/misahoge/.local/lib/python3.5/site-packages/django/db/models/lookups.py", line 74, in get_prep_lookup
+    return self.lhs.output_field.get_prep_value(self.rhs)
+  File "/home/misahoge/.local/lib/python3.5/site-packages/django/db/models/fields/__init__.py", line 966, in get_prep_value
+    return int(value)
+ValueError: invalid literal for int() with base 10: 'pk_url_kwarg'
+ERROR 2017-11-06 14:22:05,766 exception 3651 140000602654464 Internal Server Error: /article/2
+Traceback (most recent call last):
+  File "/home/misahoge/.local/lib/python3.5/site-packages/django/core/handlers/exception.py", line 41, in inner
+    response = get_response(request)
+  File "/home/misahoge/.local/lib/python3.5/site-packages/django/core/handlers/base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/home/misahoge/.local/lib/python3.5/site-packages/django/core/handlers/base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/misahoge/.local/lib/python3.5/site-packages/django/utils/decorators.py", line 149, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "/home/misahoge/.local/lib/python3.5/site-packages/django/views/generic/base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/misahoge/.local/lib/python3.5/site-packages/django/views/generic/base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/home/misahoge/.local/lib/python3.5/site-packages/django/views/generic/detail.py", line 115, in get
+    self.object = self.get_object()
+  File "/home/misahoge/mysite/mysite/blog/views.py", line 42, in get_object
+    obj = Articl.objects.get(id='pk_url_kwarg')
+NameError: name 'Articl' is not defined
+ERROR 2017-11-06 14:22:07,256 exception 3651 140000594261760 Internal Server Error: /article/2
+Traceback (most recent call last):
+  File "/home/misahoge/.local/lib/python3.5/site-packages/django/core/handlers/exception.py", line 41, in inner
+    response = get_response(request)
+  File "/home/misahoge/.local/lib/python3.5/site-packages/django/core/handlers/base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/home/misahoge/.local/lib/python3.5/site-packages/django/core/handlers/base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/misahoge/.local/lib/python3.5/site-packages/django/utils/decorators.py", line 149, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "/home/misahoge/.local/lib/python3.5/site-packages/django/views/generic/base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/misahoge/.local/lib/python3.5/site-packages/django/views/generic/base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/home/misahoge/.local/lib/python3.5/site-packages/django/views/generic/detail.py", line 115, in get
+    self.object = self.get_object()
+  File "/home/misahoge/mysite/mysite/blog/views.py", line 42, in get_object
+    obj = Articl.objects.get(id='pk_url_kwarg')
+NameError: name 'Articl' is not defined
